@@ -1,0 +1,103 @@
+set_wifi(TelloWifiName, pass1234);
+connect();
+takeoff();
+
+/*
+	this is acceleration	
+	a multiline comment
+*/
+//TODO CHECK MLINES COMMENTS
+
+var userName;
+print << PleaseEnterYourName;
+input >> userName;
+print << WelcomeTello;
+print << userName;
+video_on();
+print << VideoIsOn;
+print << PleaseEnterMaxAltitudes;
+
+
+
+var maxAltitude = 100;
+// Max Altitude is 100 by default
+input >> maxAltitude;
+var a = 10;
+// Funcltion definition
+function increaseAcceleration(){
+    var currentAltitude = get_altitude();
+	if( currentAltitude > 100){
+		var currentAccelaration = get_acceleration();
+		currentAccelaration = currentAccelaration + 5;
+		var speed = get_speed();
+		speed = speed + currentAccelaration;
+		set_speed(speed);
+	};  
+};
+
+//Function Call
+increaseAcceleration();
+//TODO CHANGE SMTHGS HERE
+// Increase acceleration until reaching max Altitude
+while ( get_altitude() != maxAltitude){
+    increaseAcceleration();
+};
+
+// If - else test case
+if (get_temperature() >= 40 ) {
+    emergency_stop();
+} else {
+    flip_back();
+};
+
+
+while (get_time() < 12) {
+    	hover();
+	if( get_battery() < 10){
+			land();
+	};
+};
+
+//For Test
+for ( var i = 4; i != 10; i = i + 1) {
+	i = i + 1;
+};
+
+for( var distance = 0; distance != totalDistance; distance = distance + 1 ) 
+{
+	if( distance < 50){
+		flip_left();
+	}else{
+		//NOT CHECK
+		if( !(distance < 100)){
+			flip_front();
+		}else{
+			if( distance < 150){
+				flip_back();
+				take_pic();
+			}else{
+				flip_right();
+			};	
+		};
+	};
+	go_forward( speed);
+	
+	if( get_acceleration() < 5){
+		speed =               speed +               1;
+	};
+	
+	
+	if( temperature           >            80 )      { 
+		land();
+		emergency_stop();
+	};
+};
+
+// variable declaration test
+a = 5*2+5-10-(10/2);
+
+land();
+video_off();
+
+
+
